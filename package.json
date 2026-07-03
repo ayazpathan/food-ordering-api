@@ -1,9 +1,19 @@
 {
   "name": "food-ordering-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -11,25 +21,29 @@
   "description": "",
   "dependencies": {
     "@apollo/server": "^5.5.1",
+    "@as-integrations/fastify": "^3.1.0",
     "@prisma/client": "^7.8.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
+    "fastify": "^5.9.0",
     "graphql": "^16.14.2",
     "graphql-scalars": "^1.25.0",
+    "graphql-tag": "^2.12.7",
     "jsonwebtoken": "^9.0.3",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bcrypt": "^6.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.62.1",
-    "@typescript-eslint/parser": "^8.62.1",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.7.0",
     "prettier": "^3.9.4",
     "prisma": "^7.8.0",
     "tsx": "^4.22.5",
-    "typescript": "^6.0.3"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.62.1"
   }
 }
