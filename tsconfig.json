@@ -1,19 +1,15 @@
 {
-  "compilerOptions": {
-    "target": "ES2023",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "compilerOptions": {
+        "target": "ES2023",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
 
-    "baseUrl": "./src",
+        "baseUrl": "./src",
 
-    "paths": {
-      "@app/*": ["app/*"],
-      "@config/*": ["config/*"],
-      "@modules/*": ["modules/*"],
-      "@shared/*": ["shared/*"],
-      "@generated/*": ["generated/*"]
-    },
+        "paths": {
+            "@/*": ["*"]
+        },
 
-    "ignoreDeprecations": "6.0"
-  }
+        "ignoreDeprecations": "6.0"
+    }
 }
