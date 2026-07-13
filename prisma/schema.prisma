@@ -9,8 +9,13 @@ datasource db {
 
 enum UserRole {
   CUSTOMER
-  RESTAURANT_OWNER
   ADMIN
+}
+
+enum RestaurantRole {
+  OWNER
+  MANAGER
+  STAFF
 }
 
 model User {
@@ -32,6 +37,8 @@ model User {
 
   credential UserCredential?
 
+  restaurantMemberships RestaurantMember[]
+
   @@index([email])
   @@index([phoneNumber])
 }
@@ -48,4 +55,38 @@ model UserCredential {
   user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model Restaurant {
+  id String @id @default(cuid())
+
+  name String
+  slug String @unique
+
+  description String?
+
+  email       String?
+  phoneNumber String?
+
+  logoUrl  String?
+  coverUrl String?
+
+  isActive Boolean @default(true)
+
+  members RestaurantMember[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RestaurantMember {
+  id           String         @id @default(cuid())
+  userId       String
+  restaurantId String
+  role         RestaurantRole
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant   Restaurant     @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  createdAt    DateTime       @default(now())
+
+  @@unique([userId, restaurantId])
 }
