@@ -1,7 +1,4 @@
-export interface PaginationInput {
-    page?: number;
-    pageSize?: number;
-}
+import type { PaginationInput } from "../validation/pagination.schema.js";
 
 export interface PaginationArgs {
     pagination?: PaginationInput;
