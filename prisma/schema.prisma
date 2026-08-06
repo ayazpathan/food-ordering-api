@@ -73,7 +73,8 @@ model Restaurant {
 
   isActive Boolean @default(true)
 
-  members RestaurantMember[]
+  members        RestaurantMember[]
+  menuCategories MenuCategory[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -89,4 +90,24 @@ model RestaurantMember {
   createdAt    DateTime       @default(now())
 
   @@unique([userId, restaurantId])
+}
+
+model MenuCategory {
+  id String @id @default(cuid())
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+
+  name        String
+  description String?
+
+  displayOrder Int     @default(0)
+  isActive     Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([restaurantId, name])
+  @@index([restaurantId])
+  @@map("menu_categories")
 }
